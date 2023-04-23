@@ -17,6 +17,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author:faryhao
@@ -117,5 +118,67 @@ public class indexController {
         SessionUtil.destroysession();
         return Result.ok("退出登录成功");
     }
+
+    /**
+    *@Description:
+    *@Param: 修改密码用户界面
+    *@return:
+    *@Author: faryhao
+    *@date: 2023/4/23
+    */
+    @PostMapping("/exchangepassword")
+    public Result newpassword(@RequestBody Map<String,String> map){
+        String id = map.get("id");
+        String password = map.get("password");
+        String newpassword = map.get("newpassword");
+        if(password.equals(newpassword)){
+            return Result.error("两次密码不能一样");
+        }
+        password =DigestUtils.md5DigestAsHex(password.getBytes());
+        log.info(password);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",id);
+        User result = userService.getOne(wrapper);
+        if(!result.getPassword().equals(password)){
+            return Result.error("密码错误");
+        }else{
+            result.setPassword(DigestUtils.md5DigestAsHex(newpassword.getBytes()));
+
+            userService.updateById(result);
+            return Result.ok("修改成功");
+
+        }
+    }
+    /**
+    *@Description:
+    *@Param: 忘记密码
+    *@return:
+    *@Author: faryhao
+    *@date: 2023/4/23
+    */
+    @PostMapping("/forgetpassword")
+    public Result forgetpassword(@RequestBody Map<String,String> map){
+        String id = map.get("id");
+        String realName = map.get("realName");
+        String phoneNum =map.get("phoneNum");
+        String newpassword = map.get("newpassword");
+        log.info(String.valueOf(map));
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",id);
+        User result = userService.getOne(wrapper);
+        log.info(String.valueOf(result));
+        if(result==null){
+            return Result.error("没有这个用户，请重试");
+        }else if((!result.getRealname().equals(realName))||(!result.getPhonenum().equals(phoneNum))){
+            return Result.error("用户信息错误");
+        }else {
+            result.setPassword(DigestUtils.md5DigestAsHex(newpassword.getBytes()));
+            userService.updateById(result);
+            return Result.ok("修改密码成功请前往登录页面登录");
+        }
+
+
+    }
+
 
 }

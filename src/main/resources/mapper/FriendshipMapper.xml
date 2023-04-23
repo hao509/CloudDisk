@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.clouddisk.mapper.FriendshipMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.clouddisk.entity.Friendship">
+            <id property="friendid" column="friendid" jdbcType="VARCHAR"/>
+            <result property="user1" column="user1" jdbcType="VARCHAR"/>
+            <result property="user2" column="user2" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        friendid,user1,user2
+    </sql>
+</mapper>

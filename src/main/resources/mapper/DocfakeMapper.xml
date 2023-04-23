@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.clouddisk.mapper.DocfakeMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.clouddisk.entity.Docfake">
+            <id property="docid" column="docid" jdbcType="VARCHAR"/>
+            <result property="docname" column="docname" jdbcType="VARCHAR"/>
+            <result property="docfakename" column="docfakename" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        docid,docname,docfakename
+    </sql>
+</mapper>

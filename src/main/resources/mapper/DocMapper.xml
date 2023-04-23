@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.clouddisk.mapper.DocMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.clouddisk.entity.Doc">
+            <id property="docid" column="docid" jdbcType="VARCHAR"/>
+            <result property="docfakename" column="docfakename" jdbcType="VARCHAR"/>
+            <result property="docowner" column="docowner" jdbcType="VARCHAR"/>
+            <result property="docsize" column="docsize" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        docid,docfakename,docowner,
+        docsize
+    </sql>
+    <select id="getSumSize" resultType="java.lang.String">
+        select sum(docsize) from doc where docowner = #{docowner}
+    </select>
+
+    <select id="findByPaging" resultMap="BaseResultMap" parameterType="map">
+        select * from PARM_FUND_INFO order by cast(id as integer ) desc
+    </select>
+
+
+</mapper>

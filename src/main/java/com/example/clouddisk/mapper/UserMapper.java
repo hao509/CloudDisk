@@ -4,6 +4,8 @@ import com.example.clouddisk.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * @author ASUS
 * @description 针对表【user】的数据库操作Mapper
@@ -14,6 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper extends BaseMapper<User> {
 
 
+    List<User> getUserList();
 }
 
 

@@ -18,13 +18,13 @@ public class Op implements Serializable {
     /**
      * 操作id
      */
-    @TableId
-    private String opid;
+    @TableId(value = "opid",type = IdType.AUTO)
+    private Integer opid;
 
     /**
      * 操作角色
      */
-    private String oprole;
+   // private String oprole;
 
     /**
      * 操作方式
@@ -40,6 +40,8 @@ public class Op implements Serializable {
      * 操作结果
      */
     private String opres;
+
+    private String opip;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -57,10 +59,11 @@ public class Op implements Serializable {
         }
         Op other = (Op) that;
         return (this.getOpid() == null ? other.getOpid() == null : this.getOpid().equals(other.getOpid()))
-            && (this.getOprole() == null ? other.getOprole() == null : this.getOprole().equals(other.getOprole()))
+           // && (this.getOprole() == null ? other.getOprole() == null : this.getOprole().equals(other.getOprole()))
             && (this.getOpmethod() == null ? other.getOpmethod() == null : this.getOpmethod().equals(other.getOpmethod()))
             && (this.getOpdate() == null ? other.getOpdate() == null : this.getOpdate().equals(other.getOpdate()))
-            && (this.getOpres() == null ? other.getOpres() == null : this.getOpres().equals(other.getOpres()));
+            && (this.getOpres() == null ? other.getOpres() == null : this.getOpres().equals(other.getOpres()))
+            && (this.getOpip() == null ? other.getOpip() == null : this.getOpip()).equals(other.getOpip());
     }
 
     @Override
@@ -68,10 +71,12 @@ public class Op implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getOpid() == null) ? 0 : getOpid().hashCode());
-        result = prime * result + ((getOprole() == null) ? 0 : getOprole().hashCode());
+       // result = prime * result + ((getOprole() == null) ? 0 : getOprole().hashCode());
         result = prime * result + ((getOpmethod() == null) ? 0 : getOpmethod().hashCode());
         result = prime * result + ((getOpdate() == null) ? 0 : getOpdate().hashCode());
         result = prime * result + ((getOpres() == null) ? 0 : getOpres().hashCode());
+        result = prime * result + ((getOpip() == null) ? 0 : getOpip().hashCode());
+
         return result;
     }
 
@@ -82,10 +87,12 @@ public class Op implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", opid=").append(opid);
-        sb.append(", oprole=").append(oprole);
+       // sb.append(", oprole=").append(oprole);
         sb.append(", opmethod=").append(opmethod);
         sb.append(", opdate=").append(opdate);
         sb.append(", opres=").append(opres);
+        sb.append(", opip=").append(opip);
+
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

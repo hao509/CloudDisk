@@ -41,10 +41,7 @@ public class indexController {
     private UserService userService;
     @Autowired
     private RoleService roleService;
-//    @GetMapping("/selectbyid")
-//    public User selectById(){
-//        return userMapper.selectById(1);
-//    }
+
 
     @ResponseBody
     @PostMapping("/login")
@@ -62,15 +59,15 @@ public class indexController {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("id", id);
         User result = userService.getOne(wrapper);
-        log.info(result.toString());
-
+        //log.info(result.toString());
+        if (result==null) {
+            return Result.error("用户不存在");
+        }
         QueryWrapper<Role> wrapper1 = new QueryWrapper<>();
         wrapper1.eq("id", result.getId());
         Role role = roleService.getOne(wrapper1);
 
-        if (result == null) {
-            return Result.error("用户不存在");
-        }
+
         if (!result.getPassword().equals(pwd)) {
             return Result.error("登录失败，密码错误");
         }

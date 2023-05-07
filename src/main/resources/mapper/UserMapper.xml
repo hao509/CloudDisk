@@ -19,4 +19,8 @@
         realName,phoneNum,idStatus,
         userspace
     </sql>
+    <select id="getUserList" resultType="com.example.clouddisk.entity.User">
+        SELECT user.id,username,realName,phoneNum,idStatus,
+               userspace FROM `user` ,`role` WHERE `user`.id =`role`.id and userole ='user'
+    </select>
 </mapper>

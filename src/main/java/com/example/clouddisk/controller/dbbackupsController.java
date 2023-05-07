@@ -22,10 +22,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/db")
 public class dbbackupsController {
-   // @RequestMapping(value = "/databasebackup",method = {RequestMethod.POST,RequestMethod.GET})
-
-
-    @GetMapping("/database-backup")
+      @GetMapping("/database-backup")
     public void databaseBackup(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String filePath = "D:\\clouddisk1\\CloudDisk\\src\\main\\resources\\templates";
         String dbName = "clouddisk111";

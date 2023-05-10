@@ -1,5 +1,7 @@
 package com.example.clouddisk.entity;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -18,6 +20,7 @@ public class Op implements Serializable {
     /**
      * 操作id
      */
+    @ExcelProperty("操作id")
     @TableId(value = "opid",type = IdType.AUTO)
     private Integer opid;
 
@@ -29,20 +32,24 @@ public class Op implements Serializable {
     /**
      * 操作方式
      */
+    @ExcelProperty("操作方式")
     private String opmethod;
 
     /**
      * 操作时间
      */
+    @ExcelProperty("操作时间")
     private Date opdate;
 
     /**
      * 操作结果
      */
+    @ExcelProperty("操作结果")
     private String opres;
-
+    @ExcelProperty("操作地址")
     private String opip;
 
+    @ExcelIgnore
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

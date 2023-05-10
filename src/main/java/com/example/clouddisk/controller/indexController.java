@@ -74,6 +74,10 @@ public class indexController {
         else
             //(result.getPassword().equals(password))
         {
+            if (result.getIdstatus()==0){
+                return Result.error("账号被禁用，请联系管理员");
+            }
+
             userRoleDto.setId(result.getId());
             userRoleDto.setUserrole(role.getUserole());
 
